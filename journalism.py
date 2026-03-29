@@ -1,4 +1,6 @@
-"""a journal module to handle complex log system """
+"""
+a journal module to handle complex log system
+"""
 import logging
 import datetime
 
@@ -96,22 +98,17 @@ class Journal:
     """
     def __init__(self, cfg = None ):
         
+        if cfg == None:
+            cfg = conf
         logging.getLogger().setLevel(0)
         
         self._levels = { 10 : "DEBUG" ,20 : "INFO"  ,30: "WARNING" ,40: "ERROR" ,50 : "CRITICAL" }
         self._logger = {}
         self._handlers = []
         self._configs = cfg
-        print(self._configs)
         
         self.add_log("_JOURNAL_")
-        
-        for config in self._configs.keys():
-            if "loggers" in self._configs[config].keys():
-                for logger in self._configs[config]["loggers"]:
-                    self.add_log( logger , config )
-        
-        
+        self.load_loggers()
         
         
         
@@ -195,6 +192,8 @@ class Journal:
         
         
         self._logger[ name ].propagate = False
+        
+        self._logger["_JOURNAL_"].info(f"created {name} logger with {config} config ")
     
     
     
@@ -235,6 +234,8 @@ class Journal:
         setattr(logging.getLoggerClass(), method_name, logForLevel)
         setattr(logging, method_name, logToRoot)
         
+        self._logger["_JOURNAL_"].info(f"added { level_name } level with value { level_num } ")
+        
         
         
         
@@ -249,17 +250,22 @@ class Journal:
           
         self._configs = { **self._configs , **config }
         
-        for cfg in configs.keys():
-            if "loggers" in config[cfg].keys():
-                for logger in configs[cfg]["loggers"]:
-                    self.add_log( logger , cfg )
+        self._logger["_JOURNAL_"].info(f"added { config.keys() } to config list ")
+        
+        self.load_loggers()
     
     
     
     
     
-    def load_logs(self, config):
-        pass
+    def load_loggers(self):
+        self._logger["_JOURNAL_"].info("loading loggers from all configs")
+        
+        for config in self._configs.keys():
+            if "loggers" in self._configs[config].keys():
+                for logger in self._configs[config]["loggers"]:
+                    if not logger in self._logger.keys():
+                        self.add_log( logger , config )
                 
         
         
