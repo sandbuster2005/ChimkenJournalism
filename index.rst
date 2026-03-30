@@ -12,8 +12,9 @@ journalism documentation
 
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
    :caption: Contents:
 
    ./journal.rst
    ./def.rst
+   ./usage.rst

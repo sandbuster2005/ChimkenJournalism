@@ -1,9 +1,9 @@
 Definitions
-==========
+===========
 
-#####
+######
 Levels
-#####
+######
 
 Log levels are defined from 0 to 50 and are a way to tell loggers and handlers 
 which message to catch 

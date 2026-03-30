@@ -113,6 +113,10 @@ class Journal:
         
         
     def __getitem__(self, index):
+        """
+        loggers
+        
+        """
         
         if index in self._logger.keys():
             return self._logger[index]
