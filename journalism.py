@@ -17,7 +17,7 @@ conf = {
         "handlers":
           [
             {
-            "name" : "main.log",
+            "name" : "default.log",
             "type" : "file",
             "level": 0
             },
@@ -84,7 +84,7 @@ def gen_handler(name , handler_type , level):
     :param str name: of the handler ( the name of the file if this is for a file handler )
     :param str handler_type: the type of handler ( file , console , WEB ... )
     :param int level: the level above which message should be written by the handler
-    :**Warning**: currently only basic file handlers are implemented
+    :**Warning**: currently only basic file and stream handlers are implemented
     """
     return { "name" : name  ,"type" : handler_type ,"level" : level }
 
@@ -100,7 +100,8 @@ class Journal:
         
         if cfg == None:
             cfg = conf
-        logging.getLogger().setLevel(0)
+            
+        logging.getLogger().setLevel(0)# root should catch all message regardless of level
         
         self._levels = { 10 : "DEBUG" ,20 : "INFO"  ,30: "WARNING" ,40: "ERROR" ,50 : "CRITICAL" }
         self._logger = {}
@@ -113,10 +114,6 @@ class Journal:
         
         
     def __getitem__(self, index):
-        """
-        loggers
-        
-        """
         
         if index in self._logger.keys():
             return self._logger[index]
@@ -144,6 +141,13 @@ class Journal:
         handler = logging.FileHandler( filehandler["name"] )
         handler.setLevel( filehandler["level"] )
         handler.setFormatter ( template ) 
+        self._handlers.append( handler )
+        
+        return handler
+    
+    def _create_stream_handler( self , handler , template):
+        handler = logging.StreamHandler( handler["name"])
+        handler.setLevel ( streamhandler["level"] )
         self._handlers.append( handler )
         
         return handler
@@ -193,9 +197,16 @@ class Journal:
         for handler in handlers:
             if handler["type"] == "file":
                  self._logger[ name ].addHandler( self._create_file_handler( handler , template ) )
-        
+                 
+            
+            if handler["type"] == "stream":
+                 self._loggger[ name ].addHandler( self._create_stream_handler( handler , template ) ) 
         
         self._logger[ name ].propagate = False
+        
+        
+        if name not in self._config[config]["loggers"]:
+            self._config[config]["loggers"].append( name )
         
         self._logger["_JOURNAL_"].info(f"created {name} logger with {config} config ")
     
@@ -250,7 +261,7 @@ class Journal:
         for old in self._configs.keys():
             for new in config.keys():
                 if old == new:
-                    raise Exception("{new} config already exist")
+                    raise Exception(f" { new } config already exist")
           
         self._configs = { **self._configs , **config }
         
