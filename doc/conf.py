@@ -1,3 +1,4 @@
+import sys,os
 # Configuration file for the Sphinx documentation builder.
 #
 # For the full list of built-in configuration values, see the documentation:
@@ -6,10 +7,13 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'journalism'
+sys.path.insert(0, os.path.abspath("../src/ChimkenJournalism"))
+
+
+project = 'ChimkenJournalism'
 copyright = '2026, Sand'
 author = 'Sand'
-release = '0.1'
+release = '0.0.2'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
