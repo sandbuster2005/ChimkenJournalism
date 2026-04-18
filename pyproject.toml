@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools >= 77.0.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ChimkenJournalism"
+version = "0.0.2"
+requires-python = ">= 3.8"
+dependencies = [
+  "logging",
+  "datetime",
+]
+authors = [ { name = "sand" }, ]
+
+description = "A small logger wrapper for everyday usecase"
+readme = "README.md"
+license = "MIT" 
+license-files = ["LICEN[CS]E*"]
+
+[project.urls]
+Repository = "https://github.com/sandbuster2005/journalism.git"
