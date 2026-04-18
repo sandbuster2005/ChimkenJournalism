@@ -1,12 +1,12 @@
 Usage
 =====
 
-#####
-basic
-#####
+######
+Basics
+######
 
-first your are supposed to create a logger amnually or trough config
-then you can reach it through index like dictionnaries and call a defined level
+First, you need to create a logger manually or through a config. 
+You can then reach it through indexes, just like dictionnaries, and call a defined level.
 
 .. code-block::
 
@@ -16,15 +16,14 @@ then you can reach it through index like dictionnaries and call a defined level
 
 
 ######
-levels
+Levels
 ######
 
-they can be created before or after loggers , it doesn't matter ,
-then it can be called like all other levels 
+They can be created before or after loggers and can be called like all other levels.
 
 .. warning::
-	when creating new level make sure neither name or value is already used
-	or else unpredictible behavior can be seen 
+	When creating new level, make sure neither the name or the value is already used
+	or else unpredictable behavior can occur. 
 
 
 .. code-block::
@@ -34,10 +33,10 @@ then it can be called like all other levels
 
 
 ######
-config
+Config
 ######
 
-to add configs its recommanded to use gen_config and gen_handler
+To add configs, it is recommanded to use the :py:func:`gen_config<journalism.gen_config>` and :py:func:`gen_handler <journalism.gen_handler>`
 
 .. code-block::
 
@@ -49,11 +48,11 @@ to add configs its recommanded to use gen_config and gen_handler
 
 
 ########
-handlers
+Handlers
 ########
 
-they are created via add_log , you can add the a config to be used, else it will use the
-default one 
+Handlers are created via :py:func:`add_log <journalism.Journal.add_log>`. You can define which config to use, otherwise it will use the
+default one.
 
 .. code-block::
 
