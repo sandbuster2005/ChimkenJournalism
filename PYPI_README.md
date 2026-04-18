@@ -1,0 +1,1 @@
+A simple module to make app's log journal creation simpler then before 

@@ -4,18 +4,29 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ChimkenJournalism"
-version = "0.0.2"
+version = "0.0.3"
 requires-python = ">= 3.8"
 dependencies = [
   "logging",
   "datetime",
 ]
 authors = [ { name = "sand" }, ]
+maintainers = [ {name = "rickarockFR" }, ]
 
 description = "A small logger wrapper for everyday usecase"
-readme = "README.md"
+readme = "PYPI_README.md"
 license = "MIT" 
 license-files = ["LICEN[CS]E*"]
 
+keywords = ["logger", "chimken", "journal"]
+classifiers = [
+	"Development Status :: 4 - Beta",
+	"Intended Audience :: Developers",
+	"Topic :: Software Development :: Testing",
+	"Topic :: Software Development :: Bug Tracking"
+
+
+
 [project.urls]
-Repository = "https://github.com/sandbuster2005/journalism.git"
+github = "https://github.com/sandbuster2005/ChimkenJournalism.git"
+Documentation = "https://sandbuster2005.github.io/ChimkenJournalism"
