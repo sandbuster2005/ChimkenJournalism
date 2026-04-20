@@ -4,12 +4,9 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ChimkenJournalism"
-version = "0.0.3"
+version = "0.0.4"
 requires-python = ">= 3.8"
-dependencies = [
-  "logging",
-  "datetime",
-]
+dependencies = [ ]
 authors = [ { name = "sand" }, ]
 maintainers = [ {name = "rickarockFR" }, ]
 
