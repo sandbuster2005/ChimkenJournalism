@@ -102,6 +102,7 @@ class Journal:
             cfg = conf
             
         logging.getLogger().setLevel(0)# root should catch all message regardless of level
+        logging.getLogger("").removeHandler(logging.getLogger("").handlers[0] )
         
         self._levels = { 10 : "DEBUG" ,20 : "INFO"  ,30: "WARNING" ,40: "ERROR" ,50 : "CRITICAL" }
         self._logger = {}
@@ -205,8 +206,8 @@ class Journal:
         self._logger[ name ].propagate = False
         
         
-        if name not in self._config[config]["loggers"]:
-            self._config[config]["loggers"].append( name )
+        if name not in self._configs[config]["loggers"]:
+            self._configs[config]["loggers"].append( name )
         
         self._logger["_JOURNAL_"].info(f"created {name} logger with {config} config ")
     
