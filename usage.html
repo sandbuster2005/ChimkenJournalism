@@ -1,0 +1,158 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Usage &mdash; ChimkenJournalism 0.0.2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=e3a6060d"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Definitions" href="def.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            ChimkenJournalism
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="journal.html">Journal module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="def.html">Definitions</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#basics">Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#levels">Levels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#config">Config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#handlers">Handlers</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ChimkenJournalism</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Usage</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/usage.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="usage">
+<h1>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h1>
+<section id="basics">
+<h2>Basics<a class="headerlink" href="#basics" title="Link to this heading"></a></h2>
+<p>First, you need to create a logger manually or through a config.
+You can then reach it through indexes, just like dictionnaries, and call a defined level.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">test</span> <span class="o">=</span> <span class="n">Journal</span><span class="p">()</span>
+<span class="n">test</span><span class="o">.</span><span class="n">add_log</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;new&quot;</span><span class="p">)</span>
+<span class="n">test</span><span class="p">[</span><span class="s2">&quot;new&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;this is a test &quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="levels">
+<h2>Levels<a class="headerlink" href="#levels" title="Link to this heading"></a></h2>
+<p>They can be created before or after loggers and can be called like all other levels.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>When creating new level, make sure neither the name or the value is already used
+or else unpredictable behavior can occur.</p>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">test</span><span class="o">.</span><span class="n">add_level</span><span class="p">(</span><span class="s2">&quot;Mylevel&quot;</span><span class="p">,</span> <span class="mi">29</span><span class="p">)</span>
+<span class="n">test</span><span class="p">[</span><span class="s2">&quot;new&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">Mylevel</span><span class="p">(</span> <span class="s2">&quot;this is an important message&quot;</span> <span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="config">
+<h2>Config<a class="headerlink" href="#config" title="Link to this heading"></a></h2>
+<p>To add configs, it is recommanded to use the <a class="reference internal" href="journal.html#journalism.gen_config" title="journalism.gen_config"><code class="xref py py-func docutils literal notranslate"><span class="pre">gen_config</span></code></a> and <a class="reference internal" href="journal.html#journalism.gen_handler" title="journalism.gen_handler"><code class="xref py py-func docutils literal notranslate"><span class="pre">gen_handler</span></code></a></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">handler</span> <span class="o">=</span> <span class="n">gen_handler</span><span class="p">(</span> <span class="s2">&quot;logs/cat_traceback.log&quot;</span> <span class="p">,</span> <span class="s2">&quot;file&quot;</span> <span class="p">,</span> <span class="mi">18</span> <span class="p">)</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">gen_config</span><span class="p">(</span> <span class="s2">&quot;cat&quot;</span> <span class="p">,</span> <span class="n">level</span> <span class="o">=</span> <span class="mi">10</span> <span class="p">,</span> <span class="n">loggers</span> <span class="o">=</span> <span class="p">[</span> <span class="s2">&quot;black&quot;</span> <span class="p">,</span> <span class="s2">&quot;white&quot;</span> <span class="p">]</span> <span class="p">,</span> <span class="n">handlers</span> <span class="o">=</span> <span class="n">handler</span><span class="p">)</span>
+<span class="c1">#since no format was indicated , it will use the defaut&#39;s config one</span>
+<span class="n">test</span><span class="o">.</span><span class="n">add_config</span><span class="p">(</span> <span class="n">config</span> <span class="p">)</span>
+<span class="n">test</span><span class="p">[</span><span class="s2">&quot;black&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">Mylevel</span><span class="p">(</span><span class="s2">&quot; this is using logger generated through config &quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="handlers">
+<h2>Handlers<a class="headerlink" href="#handlers" title="Link to this heading"></a></h2>
+<p>Handlers are created via <a class="reference internal" href="journal.html#journalism.Journal.add_log" title="journalism.Journal.add_log"><code class="xref py py-func docutils literal notranslate"><span class="pre">add_log</span></code></a>. You can define which config to use, otherwise it will use the
+default one.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">test</span><span class="o">.</span><span class="n">add_log</span><span class="p">(</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;mixed&quot;</span> <span class="p">,</span> <span class="n">config</span> <span class="o">=</span> <span class="s2">&quot;cat&quot;</span><span class="p">)</span>
+<span class="n">test</span><span class="p">[</span><span class="s2">&quot;mixed&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;this cat is strange&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="def.html" class="btn btn-neutral float-left" title="Definitions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Sand.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
